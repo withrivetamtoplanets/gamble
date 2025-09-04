@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Заработок денег онлайн</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h1>Платформа для заработка</h1>
+			<p>Зарабатывайте деньги разными способами</p>
+			<div class="auth-buttons">
+				<button id="login-btn" class="btn">Войти</button>
+				<button id="register-btn" class="btn">Регистрация</button>
+			</div>
+		</header>
+
+		<!-- Форма входа -->
+		<div id="login-modal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Вход в аккаунт</h2>
+				<div class="input-group">
+					<label for="login-email">Email:</label>
+					<input type="email" id="login-email" placeholder="Ваш email">
+                </div>
+					<div class="input-group">
+						<label for="login-password">Пароль:</label>
+						<input type="password" id="login-password" placeholder="Ваш пароль">
+                </div>
+						<button class="btn" id="submit-login">Войти</button>
+						<div id="login-message"></div>
+					</div>
+				</div>
+
+				<!-- Форма регистрации -->
+				<div id="register-modal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<h2>Регистрация аккаунта</h2>
+						<div class="input-group">
+							<label for="register-username">Имя пользователя:</label>
+							<input type="text" id="register-username" placeholder="Придумайте никнейм">
+                </div>
+							<div class="input-group">
+								<label for="register-email">Email:</label>
+								<input type="email" id="register-email" placeholder="Ваш email">
+                </div>
+								<div class="input-group">
+									<label for="register-password">Пароль:</label>
+									<input type="password" id="register-password" placeholder="Придумайте пароль">
+                </div>
+									<button class="btn" id="submit-register">Зарегистрироваться</button>
+									<div id="register-message"></div>
+								</div>
+							</div>
+
+							<!-- Контент для авторизованных пользователей -->
+							<div id="user-content" style="display: none;">
+								<div class="user-info">
+									<h2>Добро пожаловать, <span id="user-name">User</span>!</h2>
+									<p>ID: <span id="user-id">Загрузка...</span></p>
+									<button class="btn" id="logout-btn">Выйти</button>
+								</div>
+
+								<div class="balance-container">
+									<h2>Ваш баланс</h2>
+									<div class="balance">0.00 ₽</div>
+								</div>
+
+								<div class="withdraw-section">
+									<h3>Запрос на вывод средств</h3>
+									<p>Минимальная сумма вывода: 50 рублей</p>
+									<div class="input-group">
+										<label for="withdraw-amount">Сумма для вывода (₽):</label>
+										<input type="number" id="withdraw-amount" min="50" placeholder="50">
+                </div>
+										<div class="input-group">
+											<label for="payment-details">Реквизиты для получения:</label>
+											<input type="text" id="payment-details" placeholder="Номер карты/кошелька">
+                </div>
+											<button class="btn" id="request-withdraw">Запросить вывод</button>
+										</div>
+
+										<div class="earn-methods">
+											<div class="method">
+												<h3>Кликер</h3>
+												<p>Кликайте на кнопку, чтобы зарабатывать деньги. Каждый клик приносит
+													0.01 рубль.</p>
+												<button class="btn" id="clicker-btn">Кликнуть!</button>
+											</div>
+
+											<div class="method">
+												<h3>Задания</h3>
+												<p>Выполняйте простые задания и получайте вознаграждение.</p>
+												<button class="btn" id="tasks-btn">Показать задания</button>
+											</div>
+
+											<div class="method">
+												<h3>Мини-игра</h3>
+												<p>Сыграйте в простую игру и заработайте до 10 рублей.</p>
+												<button class="btn" id="game-btn">Играть</button>
+											</div>
+										</div>
+
+										<div class="tasks" id="tasks-container" style="display: none;">
+											<h3>Доступные задания</h3>
+											<div class="task">
+												<div>
+													<h4>Подпишитесь на нашу рассылку</h4>
+													<p>Нажмите кнопку и получите 2 рубля</p>
+												</div>
+												<button class="btn complete-task" data-reward="2">Выполнить</button>
+											</div>
+											<div class="task">
+												<div>
+													<h4>Посмотрите рекламный ролик</h4>
+													<p>Получите 3 рубля за просмотр</p>
+												</div>
+												<button class="btn complete-task" data-reward="3">Выполнить</button>
+											</div>
+											<div class="task">
+												<div>
+													<h4>Пригласите друга</h4>
+													<p>Получите 5 рублей за приглашение</p>
+												</div>
+												<button class="btn complete-task" data-reward="5">Выполнить</button>
+											</div>
+										</div>
+
+										<div id="game-container"
+											style="display: none; text-align: center; margin-bottom: 30px;">
+											<h3>Найдите сокровище!</h3>
+											<p>Кликайте по карточкам, чтобы найти сокровище. У вас есть 3 попытки.</p>
+											<div id="game-board">
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+												<div class="game-card">?</div>
+											</div>
+											<p>Осталось попыток: <span id="attempts-left">3</span></p>
+											<button class="btn" id="close-game">Закрыть игру</button>
+										</div>
+									</div>
+
+									<!-- Контент для неавторизованных пользователей -->
+									<div id="guest-content">
+										<div class="welcome-message">
+											<h2>Добро пожаловать на платформу для заработка!</h2>
+											<p>Зарегистрируйтесь или войдите в свой аккаунт, чтобы начать зарабатывать
+												 деньги.</p>
+										</div>
+									</div>
+
+									<footer>
+										<p> Перед пополнения баланса или
+											вывода средств свяжитесь с администратором в Telegram(@Glazozavr).</p>
+									</footer>
+
+									<div class="notification" id="notification">+0.01 ₽</div>
+								</div>
+
+								<script src="script.js"></script>
+</body>
+
+</html>
